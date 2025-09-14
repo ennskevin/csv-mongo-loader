@@ -20,9 +20,6 @@ public class App {
 
     public static void main( String[] args ) {
 
-        int localPort = 27017;
-        String connection = "mongodb://localhost:27017";
-
         String[] fieldsFromConfig = null;
         String[] types = null;
 
@@ -44,7 +41,7 @@ public class App {
             if (!Arrays.equals(fields, fieldsFromConfig)) return;
             
             // Connect to db
-            try (MongoClient mongoClient = MongoClients.create(connection)) {
+            try (MongoClient mongoClient = MongoClients.create(Database.connection)) {
                 MongoDatabase database = mongoClient.getDatabase("cs314");
                 MongoCollection<Document> collection = database.getCollection("cities");
                 
